@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Receipe</title>
+    <link rel="stylesheet" href="index.css" />s
+    <style>
+
+#searchDiv{
+    margin: auto;
+    width: 40%;
+    margin-top: 50px;
+    border-bottom: 1px solid yellow;
+    }
+    img{
+        width: 4%;
+        
+    }
+    #search{
+     width:  80%;
+   height: 60px;
+   font-size: 20px;
+   color: gray;
+   outline: 0;
+   border: none;
+   background-color:transparent;
+    }
+    </style>
+</head>
+<body>
+    <div id="mainDiv"></div>
+    <div id="searchDiv">
+        <span>
+            <img src="https://www.pinclipart.com/picdir/big/15-153180_search-button-search-symbol-svg-clipart.png">
+            <input type="text" id="search" placeholder="Search Your Fav.Receipe">
+        </span>
+    </div>
+    <div id="randomReceipe">
+
+    </div>
+</body>
+</html>
+<script type="module">
+
+import {navbar,randomReceipe,append} from "./navbar.js";
+document.querySelector("#mainDiv").innerHTML=navbar()
+let id;
+let sea=document.getElementById("search"); 
+
+let main=()=>{
+    let query=sea.value
+    console.log(query.length)
+    randomReceipe(query).then((data)=>{
+        if(query.length!=0)
+        append(data)
+        // console.log(data)
+    })
+}
+let debounce=()=>{
+    if(id){
+        clearTimeout(id)
+    }
+   id= setTimeout(function(){
+       main();
+    },1000)
+};
+// document.querySelector("#search").addEventListener("input",debounce)
+sea.addEventListener("input",debounce)
+
+</script>

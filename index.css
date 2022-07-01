@@ -1,0 +1,67 @@
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(34, 27, 27);
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 18px 50px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: gray;
+  color:yellow;
+}
+
+.topnav .log-in {
+  float: right;
+  margin-right: 20px;
+  color: red;
+}
+.topnav .log-in a{
+  color: red;
+  font-weight: bolder;
+}
+#randomReceipe{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+  color: yellow;
+}
+#dishDiv{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(204, 223, 82, 0.3) 0px 30px 60px -30px, rgba(175, 198, 49, 0.35) 0px -2px 6px 0px inset;
+  padding: 10px;
+  padding-bottom: 30px;
+  font-size: 25px;
+}
+  #btn:hover{
+   transform: scale(1.3);
+   z-index: 0.5;
+  }
+#btn{
+  font-size: 15px;
+  padding: 10px 25px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bolder;
+  border: 1px solid yellow;
+  background-color: rgb(34, 27, 27);
+  cursor: pointer;
+}

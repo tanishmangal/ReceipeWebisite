@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+    <style>
+        #innerDiv{
+            margin: auto;
+            width: 70%;
+            height: 450px;
+            display: flex;
+            margin-top: 40px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(204, 223, 82, 0.3) 0px 30px 60px -30px, rgba(175, 198, 49, 0.35) 0px -2px 6px 0px inset;
+        }
+        #imgdiv{
+            width: 40%;
+            height: 100%;
+          
+        }
+        #datadiv{
+            width: 60%;
+            height: 100%;
+            text-align: center;
+            color: yellow;
+        }
+        
+       #rediv{
+            overflow: auto;
+            height: 60%;
+            color: gray;
+            margin: 20px;
+
+        }
+        #receipe{
+            margin-right: 30px;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+    </div>
+    <div id="innerDiv">
+        <div id="imgdiv"></div>
+        <div id="datadiv">
+            <div><h1 id="foodname"></h1></div>
+            <div id="rediv"><p id="receipe"></p></div>
+           <div><button id="btn">Watch Receipe In Youtube</button></div> 
+        </div>
+    </div>
+  </body>
+</html>
+<script type="module">
+  import { navbar } from "./navbar.js";
+  document.getElementById("navbar").innerHTML = navbar();
+ let ele= JSON.parse(localStorage.getItem("seeReceipe"))
+      console.log(ele)
+      let div1=document.querySelector("#imgdiv");
+      let img=document.createElement("img")
+      img.src=ele.strMealThumb;
+      img.style.width="100%";
+      img.style.height="98%";
+      div1.append(img)
+      document.querySelector("#foodname").innerText=ele.strMeal;
+      document.querySelector("#receipe").innerText=ele.strInstructions;
+      document.querySelector("#btn").addEventListener("click",function(){
+          window.open(ele.strYoutube,"_blank")
+      })
+</script>
+
+</script>

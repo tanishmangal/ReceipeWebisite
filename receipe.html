@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receipe Of The Day</title>
+    <link rel="stylesheet" href="index.css" />
+    <style>
+        #innerDiv{
+            margin: auto;
+            width: 80%;
+            height: 600px;
+            display: flex;
+            margin-top: 40px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(204, 223, 82, 0.3) 0px 30px 60px -30px, rgba(175, 198, 49, 0.35) 0px -2px 6px 0px inset;
+            text-align: center;
+        }
+        #imgdiv{
+            width: 40%;
+            height: 100%;
+          
+        }
+        #datadiv{
+            width: 60%;
+            height: 100%;
+            /* text-align: center; */
+            color: yellow;
+        }
+        
+       #rediv{
+            height: 75%;
+            color: gray;
+            margin: 20px;
+            display: flex;
+
+        }
+        #receipe{
+            text-align: justify;
+            width: 40%;
+            height: 100%;
+            overflow: auto;
+        }
+    
+        #receipeDE{
+            margin-right: 10px;
+            margin-left: 10px;
+            width: 60%;
+            height: 100%;
+            overflow: auto;
+            text-align:justify;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+    </div>
+    <div id="innerDiv">
+        <div id="imgdiv">
+        </div>
+       
+        <div id="datadiv">
+            <div><h1 id="foodname"></h1></div>
+            <div id="rediv">
+              <div id="receipe"></div>
+              <div id="receipeDE"></div>
+            </div>
+            <div><button id="btn">Watch Receipe In Youtube</button></div> 
+        </div>
+    </div>
+  </body>
+</html>
+<script type="module">
+  import { navbar } from "./navbar.js";
+  document.getElementById("navbar").innerHTML = navbar();
+  fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+    .then((res) => res.json())
+    .then((res) => append(res.meals[0]))
+    .catch((err) => console.log("errr", err));
+
+  function append(ele) {
+      console.log(ele)
+      let div1=document.querySelector("#imgdiv");
+      let img=document.createElement("img")
+      img.src=ele.strMealThumb;
+      img.style.width="100%";
+      img.style.height="99%";
+      div1.append(img)
+      document.querySelector("#foodname").innerText=ele.strMeal;
+      let i=0;
+      console.log(ele.strIngredient1)
+      let strIngredient=[ele.strIngredient1,ele.strIngredient2,ele.strIngredient3,ele.strIngredient4,ele.strIngredient5,ele.strIngredient6,ele.strIngredient7,ele.strIngredient8,ele.strIngredient9,ele.strIngredient10,ele.strIngredient11,ele.strIngredient12,ele.strIngredient13,ele.strIngredient14,ele.strIngredient15,ele.strIngredient16,ele.strIngredient17,ele.strIngredient18,ele.strIngredient19,ele.strIngredient20]
+      
+      let measure=[ele.strMeasure1,ele.strMeasure2,ele.strMeasure3,ele.strMeasure4,ele.strMeasure5,ele.strMeasure6,ele.strMeasure7,ele.strMeasure8,ele.strMeasure9,ele.strMeasure10,ele.strMeasure11,ele.strMeasure12,ele.strMeasure13,ele.strMeasure14,ele.strMeasure15,ele.strMeasure16,ele.strMeasure17,ele.strMeasure18,ele.strMeasure19,ele.strMeasure20]
+
+       while(strIngredient[i]!="" &&i<=strIngredient.length){
+         let p=document.createElement("h3")
+         p.setAttribute=("class","p");
+         p.style.marginRight="20px";
+         p.innerText=i+1+". "+strIngredient[i]+"="+measure[i]+","
+         document.querySelector("#receipe").append(p)
+         i++;
+       }
+       let p1=document.createElement("p");
+       p1.style.marginRight="20px";
+       p1.innerText=ele.strInstructions;
+       document.querySelector("#receipeDE").append(p1)
+      // document.querySelector("#receipe").innerText=ele.strInstructions;
+      document.querySelector("#btn").addEventListener("click",function(){
+        window.open(ele.strYoutube,"_blank")
+      })
+  }
+</script>
